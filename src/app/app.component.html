@@ -1,1 +1,38 @@
-<p>Start editing to see some magic happen :)</p>
+<p>Start editing to see some magic happen</p>
+
+<h3>@ViewChild with Template reference variable</h3>
+
+<div>
+  Name:<br /><input type="text" #name /><br /><br />
+  City:<br /><input type="text" #city /><br /><br />
+</div>
+<hr />
+<app-writer name="John" book="Angular Tutorials"></app-writer>
+<app-writer name="Smith" book="ReactJS Tutorials"></app-writer>
+<app-writer name="David" book="Vue.JS Tutorials"></app-writer>
+<app-writer
+  name="Peter"
+  book="JQuery Tutorials"
+  *ngIf="allwritervisible"
+></app-writer>
+<app-writer
+  name="Alina"
+  book="Javascript Tutorials"
+  *ngIf="allwritervisible"
+></app-writer>
+<button (click)="onShowWritersVisible()">
+  <label *ngIf="allwritervisible">Show Less</label>
+  <label *ngIf="!allwritervisible">Show More</label>
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
