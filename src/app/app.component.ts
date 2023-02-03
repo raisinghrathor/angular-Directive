@@ -3,11 +3,13 @@ import {
   Component,
   ElementRef,
   QueryList,
+  TemplateRef,
   VERSION,
   ViewChild,
   ViewChildren,
   ViewContainerRef,
 } from '@angular/core';
+import { MessageDirective } from './message.directive';
 import { WriterComponent } from './writer/writer.component';
 
 @Component({
@@ -20,27 +22,15 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('city', { static: false }) elCity: ElementRef;
 
   ngAfterViewInit() {
-    this.elName.nativeElement.style.backgroundColor = 'red';
-    this.elName.nativeElement.style.color = 'cyan';
-    this.elCity.nativeElement.style.backgroundColor = 'red';
-    this.elCity.nativeElement.style.color = 'cyan';
-    console.log('----@ViewChildren with component-----');
-    this.writers1.forEach((writer) => console.log(writer));
-    console.log('Count:', this.writers1.length);
-    this.writers1.changes.subscribe((list) => {
-      list.forEach((writer) =>
-        console.log(writer.writername + ' - ' + writer.bookname)
-      );
-      console.log('Count:', this.writers1.length);
-    });
-    console.log('----@ViewChildren with ElementRef----');
-    this.writers2.forEach((writer) => console.log(writer));
-    console.log('Count:', this.writers2.length);
-
-    console.log('---@ViewChildren with ViewContainerRef----');
-    this.writer3.forEach((cref=>console.log(cref)))
-    console.log('Count:',this.writer3.length);
-
+   
+     
+      //MessageDirective
+      console.log("@ViewChildren with Directive");
+      console.log("View Children Length",this.msgList.length);
+       this.msgList.forEach(msgd=>msgd.vcRef.createEmbeddedView(this.msgTempRef));
+      
+    
+    
   }
   //writer component-viewchildren
   allwritervisible: boolean = false;
@@ -51,4 +41,8 @@ export class AppComponent implements AfterViewInit {
   onShowWritersVisible() {
     this.allwritervisible = this.allwritervisible === true ? false : true;
   }
+  //Message Directive
+  @ViewChildren(MessageDirective) msgList:QueryList<MessageDirective>
+  @ViewChild('msgTemp',{static:false})msgTempRef:TemplateRef<any>;
+
 }
