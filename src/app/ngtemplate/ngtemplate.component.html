@@ -1,0 +1,9 @@
+<button (click)="show = !show">{{ show ? 'hide' : 'show' }}</button>
+<button (click)="onChangeTemplate()">Switch Then Template</button>
+
+<div *ngIf="show; then thenTemplate; else elsetemplate">
+  Inline template ingnored
+</div>
+<ng-template #primarytemplate> primary template </ng-template>
+<ng-template #secondarytemplate> secondary template </ng-template>
+<ng-template #elsetemplate> else template </ng-template>

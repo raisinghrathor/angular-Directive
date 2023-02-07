@@ -1,45 +1,33 @@
-<p>Start editing to see some magic happen</p>
+<h3>ng-template with ngSwitch</h3>
+<input type="radio" id="rdb1" name="course" (click)="Course = 'Angular'" />
+<label for="rdb1">Angular Course</label>
 
-<h3>@ViewChild with Template reference variable</h3>
+<input type="radio" id="rdb2" name="course" (click)="Course = 'React'" />
+<label for="rdb2">React JS Course</label>
 
-<div>
-  Name:<br /><input type="text" #name /><br /><br />
-  City:<br /><input type="text" #city /><br /><br />
+<input type="radio" id="rdb3" name="course" (click)="Course = 'Vue'" />
+<label for="rdb3">Vue JS Course</label>
+
+<input type="radio" id="rdb4" name="course" (click)="Course = 'Node'" />
+<label for="rdb4">Node JS Course</label>
+
+<input type="radio" id="rdb4" name="course" (click)="Course = 'Javascript'" />
+<label for="rdb4">Javascript Course</label>
+
+<div [ngSwitch]="Course">
+  <p *ngSwitchCase="'Angular'">Angular Course</p>
+  <p *ngSwitchCase="'React'">React JS Course</p>
+  <p *ngSwitchCase="'Vue'">Vue JS Course</p>
+  <p *ngSwitchCase="'Node'">Node JS Course</p>
+  <p *ngSwitchCase="'Javascript'">Javascript Course</p>
+  <p *ngSwitchDefault>No Course Selected</p>
 </div>
-<hr />
-<app-writer name="John" book="Angular Tutorials"></app-writer>
-<app-writer name="Smith" book="ReactJS Tutorials"></app-writer>
-<app-writer name="David" book="Vue.JS Tutorials"></app-writer>
-<app-writer
-  name="Peter"
-  book="JQuery Tutorials"
-  *ngIf="allwritervisible"
-></app-writer>
-<app-writer
-  name="Alina"
-  book="Javascript Tutorials"
-  *ngIf="allwritervisible"
-></app-writer>
-<button (click)="onShowWritersVisible()">
-  <label *ngIf="allwritervisible">Show Less</label>
-  <label *ngIf="!allwritervisible">Show More</label>
-</button>
-
-<hr/>
-<h3>@ViewChildren with Directive</h3>
- <div msgd></div>
- <div msgd></div>
- <div msgd></div> 
-<ng-template #msgTemp>
-Welcome to Angular
-</ng-template>
 
 
-
-
-
-
-
-
-
-
+<div [ngSwitch]="Course">
+<ng-template [ngSwitchCase]="'Angular'"><p>Angular Course</p></ng-template>
+<ng-template [ngSwitchCase]="'React JS'"><p>React JS Course</p></ng-template>
+<ng-template [ngSwitchCase]="'Node JS'"><p>Node JS Course</p></ng-template>
+<ng-template [ngSwitchCase]="'Vue JS'"><p>Vue JS Course</p></ng-template>
+<ng-template ngSwitchDefault><p>No Course Selected</p></ng-template>
+</div>
